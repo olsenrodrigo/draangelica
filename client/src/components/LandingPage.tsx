@@ -9,7 +9,7 @@ import heroImage from "@/assets/images/angelica-consultorio-1.jpg";
 import portraitImage from "@/assets/images/angelica-retrato.jpeg";
 import officeImage from "@/assets/images/angelica-consultorio-2.jpg";
 import brandIcon from "@/assets/images/iconeoficial.png";
-import { CRM, EMAIL, geo, INSTAGRAM, RQE, site, SITE_URL, whatsappUrl, WHATSAPP_NUMBER } from "@/content/site";
+import { BUSINESS, CRM, EMAIL, geo, INSTAGRAM, RQE, site, SITE_URL, whatsappUrl, WHATSAPP_NUMBER } from "@/content/site";
 
 const iconMap = { heart: HeartPulse, flower: Flower2, moon: MoonStar, check: ClipboardCheck, sprout: Sprout };
 const differentialIcons = [Network, GraduationCap, Clock3, MapPin];
@@ -72,7 +72,7 @@ function Contact() {
   return <section id="agendar" className="section alt"><div className="container form-wrap"><h2>{site.form.title}</h2><form onSubmit={handleSubmit(submit)} noValidate>{(["name", "phone", "email"] as const).map(key => <label key={key}>{site.form.labels[key]}<input type={key === "email" ? "email" : "text"} {...register(key)} aria-invalid={!!errors[key]} />{errors[key] && <span>{key === "email" ? site.form.invalidEmail : site.form.required}</span>}</label>)}<label>{site.form.labels.reason}<select {...register("reason")} defaultValue="" aria-invalid={!!errors.reason} required><option value="" disabled>{site.form.reasonPlaceholder}</option>{site.form.reasons.map(reason => <option key={reason}>{reason}</option>)}</select>{errors.reason && <span>{site.form.required}</span>}</label><label>{site.form.labels.message}<textarea {...register("message")} rows={4}/></label><button className="button" type="submit">{site.form.submit}<ArrowRight /></button></form></div></section>;
 }
 
-function Footer() { return <footer className="footer"><div className="container footer-grid"><div><span className="brand"><img src={brandIcon} alt="" className="brand-icon" loading="lazy" /><span className="wordmark">{site.doctor}</span></span><p>{site.specialty}</p><span>{CRM} · {RQE}</span></div><div><strong>{site.footer.contactTitle}</strong><a href={`mailto:${EMAIL}`}>{EMAIL}</a><a href={INSTAGRAM} target="_blank" rel="noreferrer"><Instagram />{site.footer.instagram}</a></div><div><strong>{site.footer.linksTitle}</strong>{site.nav.map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div></div><div className="container footer-bottom"><span>{site.footer.credit}</span><span>{site.footer.copyright}</span></div></footer>; }
+function Footer() { return <footer className="footer"><div className="container footer-grid"><div><span className="brand"><img src={brandIcon} alt="" className="brand-icon" loading="lazy" /><span className="wordmark">{site.doctor}</span></span><p>{site.specialty}</p><span>{CRM} · {RQE}</span></div><div><strong>{site.footer.contactTitle}</strong><a href={`mailto:${EMAIL}`}>{EMAIL}</a><a href={INSTAGRAM} target="_blank" rel="noreferrer"><Instagram />{site.footer.instagram}</a></div><div><strong>{site.footer.linksTitle}</strong>{site.nav.map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div></div><address className="container footer-legal"><span>{BUSINESS.legalName} · CNPJ {BUSINESS.cnpj}</span><span>{BUSINESS.address} · <a href={`mailto:${EMAIL}`}>{EMAIL}</a></span></address><div className="container footer-bottom"><span>{site.footer.credit}</span><span>{site.footer.copyright}</span></div></footer>; }
 
 // Nós auxiliares do JSON-LD: campos vazios são omitidos para não sujar o grafo.
 const nodes = (type: string, values: readonly string[]) => values.length ? values.map(name => ({ "@type": type, name })) : undefined;
@@ -95,6 +95,11 @@ function StructuredData() {
     identifier: [{ "@type": "PropertyValue", propertyID: "CRM", value: CRM }, { "@type": "PropertyValue", propertyID: "RQE", value: RQE }],
     areaServed: { "@type": "City", name: "São Paulo", addressRegion: "SP", addressCountry: "BR" },
     knowsAbout,
+    // Pessoa jurídica do atendimento: casa o site com o cadastro da empresa na verificação da Meta.
+    parentOrganization: {
+      "@type": "Organization", name: BUSINESS.legalName, legalName: BUSINESS.legalName, taxID: BUSINESS.cnpj, email: EMAIL, url: SITE_URL,
+      address: { "@type": "PostalAddress", streetAddress: BUSINESS.street, addressLocality: `${BUSINESS.district}, ${BUSINESS.city}`, addressRegion: BUSINESS.state, postalCode: BUSINESS.postalCode, addressCountry: "BR" },
+    },
     address: site.locations.items.map(item => ({ "@type": "PostalAddress", name: item.name, streetAddress: item.address, addressLocality: "São Paulo", addressRegion: "SP", addressCountry: "BR" })),
   };
   return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}/><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(physician) }}/></>;

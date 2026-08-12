@@ -1,9 +1,26 @@
 export const WHATSAPP_NUMBER = "5511996058392"; // (11) 99605-8392 — WhatsApp de todos os CTAs
-export const EMAIL = "drangelicamanfroi@gmail.com";
+export const EMAIL = "angelica.manfroi@gmail.com";
 export const CRM = "CRM-SP 115396";
 export const RQE = "RQE 24296";
 export const INSTAGRAM = "https://www.instagram.com/dra_angelica_manfroi/";
 export const SITE_URL = "https://draangelicamanfroi.com.br";
+
+/**
+ * Dados cadastrais da pessoa jurídica, conferidos na Receita Federal (CNPJ ATIVO).
+ * Precisam aparecer como texto legível no rodapé e no JSON-LD para a verificação
+ * de negócio da Meta (Business Manager) casar o site com o cadastro da empresa.
+ * Espelhados em client/index.html (meta tags + noscript) para crawlers sem JS.
+ */
+export const BUSINESS = {
+  legalName: "ANGELICA MANFROI SERVICOS MEDICOS SS LTDA",
+  cnpj: "40.813.075/0001-06",
+  street: "R. Luís Coelho, 223 — 1º andar",
+  district: "Consolação",
+  city: "São Paulo",
+  state: "SP",
+  postalCode: "01309-901",
+  address: "R. Luís Coelho, 223 — 1º andar, Consolação, São Paulo — SP, CEP 01309-901",
+} as const;
 
 export const site = {
   doctor: "Dra. Angélica Manfroi",

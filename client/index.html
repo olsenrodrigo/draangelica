@@ -15,9 +15,46 @@
     <meta name="twitter:description" content="Coordenação do cuidado e acompanhamento contínuo em São Paulo." />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!--
+      Dados cadastrais da pessoa jurídica (espelham client/src/content/site.ts → BUSINESS).
+      Ficam no HTML estático porque o crawler de verificação da Meta não executa JavaScript:
+      sem isso, ele não enxergaria o rodapé renderizado pelo React.
+    -->
+    <meta property="business:contact_data:street_address" content="R. Luís Coelho, 223 — 1º andar, Consolação" />
+    <meta property="business:contact_data:locality" content="São Paulo" />
+    <meta property="business:contact_data:region" content="SP" />
+    <meta property="business:contact_data:postal_code" content="01309-901" />
+    <meta property="business:contact_data:country_name" content="Brasil" />
+    <meta property="business:contact_data:email" content="angelica.manfroi@gmail.com" />
+    <meta property="business:contact_data:website" content="https://draangelicamanfroi.com.br/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "ANGELICA MANFROI SERVICOS MEDICOS SS LTDA",
+        "legalName": "ANGELICA MANFROI SERVICOS MEDICOS SS LTDA",
+        "taxID": "40.813.075/0001-06",
+        "email": "angelica.manfroi@gmail.com",
+        "url": "https://draangelicamanfroi.com.br/",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "R. Luís Coelho, 223 — 1º andar",
+          "addressLocality": "Consolação, São Paulo",
+          "addressRegion": "SP",
+          "postalCode": "01309-901",
+          "addressCountry": "BR"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      ANGELICA MANFROI SERVICOS MEDICOS SS LTDA · CNPJ 40.813.075/0001-06 ·
+      R. Luís Coelho, 223 — 1º andar, Consolação, São Paulo — SP, CEP 01309-901 ·
+      angelica.manfroi@gmail.com
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

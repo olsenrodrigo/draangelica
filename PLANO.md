@@ -78,7 +78,7 @@ Verde profundo + sálvia + neutros quentes, com um toque de ocre (ecoa os quadro
 8. **CTA final** — bloco de contraste fundo `--primary`. "Cuidado que acompanha você, não só o sintoma do momento." + parágrafo da copy. Botão "Agendar pelo WhatsApp". Microtexto: "Atendimento particular. Consulta de 50 minutos."
 9. **FAQ** — accordion (radix), as 6 perguntas/respostas VERBATIM da copy. Injetar JSON-LD `FAQPage` (schema.org) com as mesmas 6 Q&As — exigência de GEO da copy (pode ser um <script type="application/ld+json"> montado em componente ou no index.html).
 10. **Formulário — "Agende sua consulta"** — campos: Nome, WhatsApp, E-mail, "O que te trouxe até aqui" (select: Hipertensão/Diabetes · Climatério e menopausa · Sono, ansiedade ou dor crônica · Check-up e prevenção · Outro — select com placeholder disabled DEVE ser required no zod, senão "undefined" vaza na mensagem), Mensagem. Ao enviar → redirect `https://wa.me/<numero>?text=<urlencoded>`; a mensagem identifica a trilha para a Helena (assistente de IA), ex.: `Olá! Vim pelo site da Dra. Angélica. Nome: ... | Motivo: Climatério e menopausa | E-mail: ... | Mensagem: ...`. Validação react-hook-form + zod (já nas deps).
-11. **Footer** — nome, CRM-SP 115396, e-mail drangelicamanfroi@gmail.com, links âncora, Instagram (https://www.instagram.com/dra_angelica_manfroi/), crédito "ELYSSA" pequeno.
+11. **Footer** — nome, CRM-SP 115396, e-mail angelica.manfroi@gmail.com, links âncora, Instagram (https://www.instagram.com/dra_angelica_manfroi/), bloco de dados cadastrais da PJ (razão social, CNPJ, endereço fiscal — necessário para a verificação de negócio da Meta) e crédito "ELYSSA" pequeno.
 
 **Navbar**: transparente sobre o hero → sólida no scroll (padrão do whitelabel). Wordmark "Dra. Angélica Manfroi" em Source Serif 4 (um arquivo de logo poderá substituir depois — deixar o wordmark num componente isolado fácil de trocar). Links âncora: Sobre · Como posso ajudar · Locais · Depoimentos · FAQ · botão Agendar.
 
@@ -87,7 +87,7 @@ Verde profundo + sálvia + neutros quentes, com um toque de ocre (ecoa os quadro
 Em `content/site.ts`:
 ```ts
 export const WHATSAPP_NUMBER = "5511996058392"; // (11) 99605-8392 — confirmado pela Dra. em 11/08/2026
-export const EMAIL = "drangelicamanfroi@gmail.com";
+export const EMAIL = "angelica.manfroi@gmail.com";
 export const CRM = "CRM-SP 115396";
 export const RQE = "RQE 24296";
 export const INSTAGRAM = "https://www.instagram.com/dra_angelica_manfroi/";
