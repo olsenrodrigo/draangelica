@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = "551136152474";
+export const WHATSAPP_NUMBER = "5511996058392"; // (11) 99605-8392 — WhatsApp de todos os CTAs
 export const EMAIL = "drangelicamanfroi@gmail.com";
 export const CRM = "CRM-SP 115396";
 export const RQE = "RQE 24296";

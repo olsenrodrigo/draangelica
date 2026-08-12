@@ -86,10 +86,10 @@ Verde profundo + sálvia + neutros quentes, com um toque de ocre (ecoa os quadro
 
 Em `content/site.ts`:
 ```ts
-export const WHATSAPP_NUMBER = "551136152474"; // número dos CTAs do site atual dela
-// Alternativo encontrado no rodapé do site atual: 5511921262996 — confirmar qual receberá a Helena
+export const WHATSAPP_NUMBER = "5511996058392"; // (11) 99605-8392 — confirmado pela Dra. em 11/08/2026
 export const EMAIL = "drangelicamanfroi@gmail.com";
 export const CRM = "CRM-SP 115396";
+export const RQE = "RQE 24296";
 export const INSTAGRAM = "https://www.instagram.com/dra_angelica_manfroi/";
 ```
 Todos os CTAs "Agendar" (navbar, hero, CTA final, formulário) usam `WHATSAPP_NUMBER` com `?text=` pré-preenchido: "Olá, gostaria de agendar uma consulta com a Dra. Angélica Manfroi".
@@ -122,7 +122,7 @@ Todos os CTAs "Agendar" (navbar, hero, CTA final, formulário) usam `WHATSAPP_NU
 
 1. `/` funciona; 404 para o resto; nenhuma rota curinga acidental no wouter.
 2. Ordem e texto das seções = copy verbatim; depoimentos reais no carrossel.
-3. Todos os CTAs e o formulário redirecionam para wa.me/551136152474 com texto identificado.
+3. Todos os CTAs e o formulário redirecionam para wa.me/5511996058392 com texto identificado.
 4. Select do formulário required no zod (sem "undefined" na mensagem).
 5. FAQ com accordion + JSON-LD FAQPage válido.
 6. `npm run check` limpo; `npm run dev` sobe sem erro.
