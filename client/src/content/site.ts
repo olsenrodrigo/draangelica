@@ -3,7 +3,7 @@ export const EMAIL = "angelica.manfroi@gmail.com";
 export const CRM = "CRM-SP 115396";
 export const RQE = "RQE 24296";
 export const INSTAGRAM = "https://www.instagram.com/dra_angelica_manfroi/";
-export const SITE_URL = "https://draangelicamanfroi.com.br";
+export const SITE_URL = "https://angelicamanfroi.com.br";
 
 /**
  * Dados cadastrais da pessoa jurídica, conferidos na Receita Federal (CNPJ ATIVO).
