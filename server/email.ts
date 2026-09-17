@@ -18,12 +18,12 @@ interface ContactData {
 }
 
 export async function sendContactEmail(data: ContactData) {
-  /* WHITELABEL: Substituir email de destino */
-  const to = process.env.CONTACT_EMAIL || "contato@seusite.com.br";
+  // O fallback aponta para o proprio dominio do site: o padrao whitelabel era
+  // contato@seusite.com.br, dominio de terceiro, entao lead nenhum chegava.
+  const to = process.env.CONTACT_EMAIL || "contato@angelicamanfroi.com.br";
 
   await transporter.sendMail({
-    /* WHITELABEL: Substituir nome do remetente */
-    from: `"Site Medico" <${process.env.SMTP_USER}>`,
+    from: `"Site Dra. Angélica Manfroi" <${process.env.SMTP_USER}>`,
     to,
     replyTo: data.email,
     subject: `Nova consulta – ${data.name}`,

@@ -1,5 +1,5 @@
 export const WHATSAPP_NUMBER = "5511996058392"; // (11) 99605-8392 — WhatsApp de todos os CTAs
-export const EMAIL = "angelica.manfroi@gmail.com";
+export const EMAIL = "contato@angelicamanfroi.com.br";
 export const CRM = "CRM-SP 115396";
 export const RQE = "RQE 24296";
 export const INSTAGRAM = "https://www.instagram.com/dra_angelica_manfroi/";
