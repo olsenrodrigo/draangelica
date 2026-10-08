@@ -1,4 +1,5 @@
-export const WHATSAPP_NUMBER = "5511996058392"; // (11) 99605-8392 — WhatsApp de todos os CTAs
+export const WHATSAPP_NUMBER = "5511996058392"; // (11) 99605-8392 — WhatsApp de todos os CTAs (apenas mensagens)
+export const PHONE_NUMBER = "551136152474"; // (11) 3615-2474 — telefone fixo para agendamento
 export const EMAIL = "contato@angelicamanfroi.com.br";
 export const CRM = "CRM-SP 115396";
 export const RQE = "RQE 24296";
@@ -35,7 +36,7 @@ export const site = {
   hero: {
     eyebrow: "Dra. Angélica Manfroi",
     title: "Medicina de Família, cuidado que acompanha você de verdade.",
-    subtitle: "Dra. Angélica Manfroi, Médica de Família e Comunidade, com doutorado em Educação Médica e formação em Medicina do Estilo de Vida.",
+    subtitle: "Dra. Angélica Manfroi, Médica de Família e Comunidade, com doutorado em Educação Médica e pós-graduação em Medicina do Estilo de Vida (Einstein).",
     text: "Coordenação do cuidado, acompanhamento contínuo e uma escuta que entende o quadro todo, não só o sintoma do dia.",
     imageAlt: "Dra. Angélica Manfroi em seu consultório",
   },
@@ -43,10 +44,10 @@ export const site = {
     eyebrow: "Sobre a Dra. Angélica",
     title: "Cuidado contínuo, não consultas isoladas por sintoma.",
     paragraphs: [
-      "Formada em Medicina pela UFRGS, com residência em Medicina de Família e Comunidade no Grupo Hospital Conceição, em Porto Alegre, um dos centros formadores de referência no Brasil. Tenho doutorado em Educação Médica, sou professora universitária em Atenção Primária e também tenho formação em Medicina do Estilo de Vida.",
+      "Formada em Medicina pela UFRGS, com residência em Medicina de Família e Comunidade no Grupo Hospital Conceição, em Porto Alegre, um dos centros formadores de referência no Brasil. Tenho doutorado em Educação Médica, sou professora universitária em Atenção Primária e também tenho pós-graduação em Medicina do Estilo de Vida pelo Einstein.",
       "Meu trabalho parte de uma ideia simples: saúde é movimento. Isso significa olhar para o paciente por inteiro, coordenar o cuidado entre diferentes frentes de tratamento quando necessário, e ajudar cada pessoa a entender e assumir a própria saúde no dia a dia, não só durante a consulta.",
     ],
-    credentials: ["UFRGS", "Residência MFC — Grupo Hospitalar Conceição", "Doutorado em Educação Médica (FMUSP)", "Medicina do Estilo de Vida"],
+    credentials: ["UFRGS", "Residência MFC — Grupo Hospitalar Conceição", "Doutorado em Educação Médica (FMUSP)", "Pós-graduação em Medicina do Estilo de Vida (Einstein)"],
     imageAlt: "Retrato da Dra. Angélica Manfroi",
   },
   conditionsIntro: { eyebrow: "Como posso ajudar", title: "Cuidado em diferentes Contextos de saúde" },
@@ -58,7 +59,7 @@ export const site = {
     { icon: "sprout", title: "Aquisição e Manutenção de Hábitos Saudáveis", lead: "Mudar não é fácil e se manter na mudança pode ser ainda mais desafiador.", text: "Eu te auxilio durante todo o processo de mudança, incluindo a manutenção dos hábitos saudáveis: alimentação, atividade física, abandono do uso de substâncias tóxicas (álcool e tabaco), sono, manejo do estresse.", whenTitle: "Quando procurar", when: "Tentativas de mudança que não se sustentam, vontade de melhorar a alimentação, o sono ou a atividade física, ou o desejo de parar de fumar e reduzir o álcool com acompanhamento." },
   ],
   children: { title: "Saúde Infantil e Adolescência", text: "Acompanhamento do crescimento e desenvolvimento. Também acolho demandas simples de saúde infantil (como resfriados e queixas do dia a dia), encaminhando a um pediatra sempre que o caso pedir um acompanhamento mais especializado." },
-  differentials: { title: "Diferenciais", items: ["Coordenação do cuidado entre diferentes frentes de tratamento", "Doutorado em Educação Médica e formação em Medicina do Estilo de Vida", "Consulta de 50 minutos, com tempo real para ouvir o paciente", "Atendimento particular em São Paulo, em dois endereços"] },
+  differentials: { title: "Diferenciais", items: ["Coordenação do cuidado entre diferentes frentes de tratamento", "Doutorado em Educação Médica e pós-graduação em Medicina do Estilo de Vida (Einstein)", "Consulta de 50 minutos, com tempo real para ouvir o paciente", "Atendimento particular em São Paulo, em dois endereços"] },
   locations: {
     eyebrow: "Locais de atendimento", title: "Atendimento particular em São Paulo",
     imageAlt: "Consultório da Dra. Angélica Manfroi em São Paulo",
@@ -94,6 +95,11 @@ export const site = {
       ["Cannabis medicinal serve para o quê?", "É prescrita para adultos com sono, ansiedade ou dor crônica, sempre dentro de um acompanhamento clínico completo."],
       ["Atende climatério e menopausa?", "Sim, incluindo avaliação para reposição hormonal e questões de sexualidade feminina."],
     ],
+  },
+  contacts: {
+    title: "Agendamento",
+    phone: { label: "Telefone fixo", display: "(11) 3615-2474" },
+    whatsapp: { label: "WhatsApp (apenas mensagens)", display: "(11) 99605-8392" },
   },
   form: {
     title: "Agende sua consulta", labels: { name: "Nome", phone: "WhatsApp", email: "E-mail", reason: "O que te trouxe até aqui", message: "Mensagem" },

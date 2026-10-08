@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ArrowRight, Baby, Check, ClipboardCheck, Clock3, Flower2, GraduationCap, HeartHandshake, HeartPulse, Instagram, MapPin, Menu, MoonStar, Network, Quote, Sprout, Star, X } from "lucide-react";
+import { ArrowRight, Baby, Check, ClipboardCheck, Clock3, Flower2, GraduationCap, HeartHandshake, HeartPulse, Instagram, MapPin, Menu, MessageCircle, MoonStar, Network, Phone, Quote, Sprout, Star, X } from "lucide-react";
 import heroImage from "@/assets/images/angelica-consultorio-1.jpg";
 import portraitImage from "@/assets/images/angelica-retrato.jpeg";
 import officeImage from "@/assets/images/angelica-consultorio-2.jpg";
 import brandIcon from "@/assets/images/iconeoficial.png";
-import { BUSINESS, CRM, EMAIL, geo, INSTAGRAM, RQE, site, SITE_URL, whatsappUrl, WHATSAPP_NUMBER } from "@/content/site";
+import { BUSINESS, CRM, EMAIL, geo, INSTAGRAM, PHONE_NUMBER, RQE, site, SITE_URL, whatsappUrl, WHATSAPP_NUMBER } from "@/content/site";
 
 const iconMap = { heart: HeartPulse, flower: Flower2, moon: MoonStar, check: ClipboardCheck, sprout: Sprout };
 const differentialIcons = [Network, GraduationCap, Clock3, MapPin];
@@ -58,10 +58,16 @@ function Testimonials() {
   return <section id="depoimentos" className="section alt"><div className="container"><SectionHeading eyebrow={site.testimonials.eyebrow} title={site.testimonials.title}/><div className="embla" ref={emblaRef}><div className="embla-container">{site.testimonials.items.map(([name, quote]) => <article className="testimonial" key={name}><Quote strokeWidth={1.5}/><div className="stars" aria-hidden="true">{[0,1,2,3,4].map(n => <Star key={n} fill="currentColor" />)}</div><blockquote>{quote}</blockquote><footer><strong>{name}</strong><span>{site.testimonials.verified}</span></footer></article>)}</div></div><div className="dots">{site.testimonials.items.map((item, i) => <button key={item[0]} className={selected === i ? "active" : ""} onClick={() => emblaApi?.scrollTo(i)} aria-label={`${site.testimonials.title}: ${i + 1}`} />)}</div></div></section>;
 }
 
-function FinalCta() { return <section className="final-cta"><div className="container"><img src={brandIcon} alt="" className="cta-icon" loading="lazy" /><h2>{site.finalCta.title}</h2><p>{site.finalCta.text}</p><a className="button button-light" href={whatsappUrl()} target="_blank" rel="noreferrer">{site.actions.whatsapp}<ArrowRight /></a><small>{site.finalCta.note}</small></div></section>; }
+function FinalCta() { return <section className="final-cta"><div className="container"><img src={brandIcon} alt="" className="cta-icon" loading="lazy" /><h2>{site.finalCta.title}</h2><p>{site.finalCta.text}</p><a className="button button-light" href={whatsappUrl()} target="_blank" rel="noreferrer">{site.actions.whatsapp}<ArrowRight /></a><ScheduleContacts className="schedule-contacts schedule-contacts-light" /><small>{site.finalCta.note}</small></div></section>; }
 
 function FAQ() {
   return <section id="faq" className="section"><div className="container faq-wrap"><SectionHeading eyebrow={site.faq.eyebrow} title={site.faq.title}/><Accordion type="single" collapsible>{site.faq.items.map(([question, answer], i) => <AccordionItem value={`faq-${i}`} key={question}><AccordionTrigger>{question}</AccordionTrigger><AccordionContent>{answer}</AccordionContent></AccordionItem>)}</Accordion></div></section>;
+}
+
+// Telefone fixo e WhatsApp (só mensagens) para agendamento: seção #agendar e chamada final.
+function ScheduleContacts({ className }: { className: string }) {
+  const c = site.contacts;
+  return <div className={className}><a href={`tel:+${PHONE_NUMBER}`}><Phone strokeWidth={1.5} /><span><small>{c.phone.label}</small>{c.phone.display}</span></a><a href={whatsappUrl()} target="_blank" rel="noreferrer"><MessageCircle strokeWidth={1.5} /><span><small>{c.whatsapp.label}</small>{c.whatsapp.display}</span></a></div>;
 }
 
 const formSchema = z.object({ name: z.string().min(1), phone: z.string().min(1), email: z.string().email(), reason: z.string().min(1), message: z.string() });
@@ -69,10 +75,10 @@ type FormValues = z.infer<typeof formSchema>;
 function Contact() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver: zodResolver(formSchema), defaultValues: { name: "", phone: "", email: "", reason: "", message: "" } });
   const submit = (data: FormValues) => { const f = site.form.messageFields; const message = `${site.form.messagePrefix} ${f.name}: ${data.name} | ${f.reason}: ${data.reason} | ${f.email}: ${data.email} | ${f.phone}: ${data.phone} | ${f.message}: ${data.message}`; window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`; };
-  return <section id="agendar" className="section alt"><div className="container form-wrap"><h2>{site.form.title}</h2><form onSubmit={handleSubmit(submit)} noValidate>{(["name", "phone", "email"] as const).map(key => <label key={key}>{site.form.labels[key]}<input type={key === "email" ? "email" : "text"} {...register(key)} aria-invalid={!!errors[key]} />{errors[key] && <span>{key === "email" ? site.form.invalidEmail : site.form.required}</span>}</label>)}<label>{site.form.labels.reason}<select {...register("reason")} defaultValue="" aria-invalid={!!errors.reason} required><option value="" disabled>{site.form.reasonPlaceholder}</option>{site.form.reasons.map(reason => <option key={reason}>{reason}</option>)}</select>{errors.reason && <span>{site.form.required}</span>}</label><label>{site.form.labels.message}<textarea {...register("message")} rows={4}/></label><button className="button" type="submit">{site.form.submit}<ArrowRight /></button></form></div></section>;
+  return <section id="agendar" className="section alt"><div className="container form-wrap"><h2>{site.form.title}</h2><ScheduleContacts className="schedule-contacts" /><form onSubmit={handleSubmit(submit)} noValidate>{(["name", "phone", "email"] as const).map(key => <label key={key}>{site.form.labels[key]}<input type={key === "email" ? "email" : "text"} {...register(key)} aria-invalid={!!errors[key]} />{errors[key] && <span>{key === "email" ? site.form.invalidEmail : site.form.required}</span>}</label>)}<label>{site.form.labels.reason}<select {...register("reason")} defaultValue="" aria-invalid={!!errors.reason} required><option value="" disabled>{site.form.reasonPlaceholder}</option>{site.form.reasons.map(reason => <option key={reason}>{reason}</option>)}</select>{errors.reason && <span>{site.form.required}</span>}</label><label>{site.form.labels.message}<textarea {...register("message")} rows={4}/></label><button className="button" type="submit">{site.form.submit}<ArrowRight /></button></form></div></section>;
 }
 
-function Footer() { return <footer className="footer"><div className="container footer-grid"><div><span className="brand"><img src={brandIcon} alt="" className="brand-icon" loading="lazy" /><span className="wordmark">{site.doctor}</span></span><p>{site.specialty}</p><span>{CRM} · {RQE}</span><address className="footer-address"><MapPin strokeWidth={1.5} /><span>{BUSINESS.street}<br />{BUSINESS.district}, {BUSINESS.city} — {BUSINESS.state} · CEP {BUSINESS.postalCode}</span></address></div><div><strong>{site.footer.contactTitle}</strong><a href={`mailto:${EMAIL}`}>{EMAIL}</a><a href={INSTAGRAM} target="_blank" rel="noreferrer"><Instagram />{site.footer.instagram}</a></div><div><strong>{site.footer.linksTitle}</strong>{site.nav.map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div></div><address className="container footer-legal"><span>{`${BUSINESS.legalName} · CNPJ ${BUSINESS.cnpj}`}</span><span>{BUSINESS.address} · <a href={`mailto:${EMAIL}`}>{EMAIL}</a></span></address><div className="container footer-bottom"><span>{site.footer.credit}</span><span>{site.footer.copyright}</span></div></footer>; }
+function Footer() { return <footer className="footer"><div className="container footer-grid"><div><span className="brand"><img src={brandIcon} alt="" className="brand-icon" loading="lazy" /><span className="wordmark">{site.doctor}</span></span><p>{site.specialty}</p><span>{CRM} · {RQE}</span><address className="footer-address"><MapPin strokeWidth={1.5} /><span>{BUSINESS.street}<br />{BUSINESS.district}, {BUSINESS.city} — {BUSINESS.state} · CEP {BUSINESS.postalCode}</span></address></div><div><strong>{site.footer.contactTitle}</strong><a href={`tel:+${PHONE_NUMBER}`}><Phone />{site.contacts.phone.label}: {site.contacts.phone.display}</a><a href={whatsappUrl()} target="_blank" rel="noreferrer"><MessageCircle />{site.contacts.whatsapp.label}: {site.contacts.whatsapp.display}</a><a href={`mailto:${EMAIL}`}>{EMAIL}</a><a href={INSTAGRAM} target="_blank" rel="noreferrer"><Instagram />{site.footer.instagram}</a></div><div><strong>{site.footer.linksTitle}</strong>{site.nav.map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div></div><address className="container footer-legal"><span>{`${BUSINESS.legalName} · CNPJ ${BUSINESS.cnpj}`}</span><span>{BUSINESS.address} · <a href={`mailto:${EMAIL}`}>{EMAIL}</a></span></address><div className="container footer-bottom"><span>{site.footer.credit}</span><span>{site.footer.copyright}</span></div></footer>; }
 
 // Nós auxiliares do JSON-LD: campos vazios são omitidos para não sujar o grafo.
 const nodes = (type: string, values: readonly string[]) => values.length ? values.map(name => ({ "@type": type, name })) : undefined;
@@ -91,7 +97,7 @@ function StructuredData() {
   ];
   const physician = {
     "@context": "https://schema.org", "@type": "Physician", name: site.doctor, medicalSpecialty: site.specialty,
-    description: site.hero.subtitle, url: SITE_URL, sameAs: [INSTAGRAM], telephone: `+${WHATSAPP_NUMBER}`, email: EMAIL,
+    description: site.hero.subtitle, url: SITE_URL, sameAs: [INSTAGRAM], telephone: `+${PHONE_NUMBER}`, email: EMAIL,
     identifier: [{ "@type": "PropertyValue", propertyID: "CRM", value: CRM }, { "@type": "PropertyValue", propertyID: "RQE", value: RQE }],
     areaServed: { "@type": "City", name: "São Paulo", addressRegion: "SP", addressCountry: "BR" },
     knowsAbout,

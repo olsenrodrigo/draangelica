@@ -6,7 +6,7 @@
 // — para eles o site não existia. A base `geo` de condições clínicas (site.ts)
 // só tinha valor se chegasse ao HTML, e é isso que este arquivo faz.
 
-import { BUSINESS, CRM, EMAIL, INSTAGRAM, RQE, SITE_URL, WHATSAPP_NUMBER, geo, site } from "./site";
+import { BUSINESS, CRM, EMAIL, INSTAGRAM, PHONE_NUMBER, RQE, SITE_URL, geo, site } from "./site";
 
 /** Sem barra final. Produção responde no ápice (www redireciona 301). */
 export const ORIGIN = SITE_URL;
@@ -22,7 +22,7 @@ export const rotas: Rota[] = [
     title: "Médica de Família em São Paulo | Dra. Angélica Manfroi",
     description:
       `Dra. Angélica Manfroi (${CRM} · ${RQE}), Médica de Família e Comunidade em São Paulo, ` +
-      "com formação em Medicina do Estilo de Vida. Acompanhamento contínuo de hipertensão, " +
+      "com pós-graduação em Medicina do Estilo de Vida (Einstein). Acompanhamento contínuo de hipertensão, " +
       "diabetes, obesidade, climatério e menopausa, sono, ansiedade, dor crônica e check-up " +
       "preventivo. Consulta de 50 minutos.",
     keywords: [
@@ -52,7 +52,7 @@ export function grafoJsonLd() {
     image: `${ORIGIN}/opengraph.jpg`,
     identifier: `${CRM} · ${RQE}`,
     medicalSpecialty: "PrimaryCare",
-    telephone: `+${WHATSAPP_NUMBER}`,
+    telephone: `+${PHONE_NUMBER}`,
     email: EMAIL,
     sameAs: [INSTAGRAM],
     areaServed: { "@type": "City", name: "São Paulo" },
@@ -105,7 +105,7 @@ export function llmsTxt() {
   return [
     `# ${site.doctor}`,
     "",
-    `> ${site.specialty} em São Paulo/SP, com formação em Medicina do Estilo de Vida.`,
+    `> ${site.specialty} em São Paulo/SP, com pós-graduação em Medicina do Estilo de Vida (Einstein).`,
     "> Acompanhamento contínuo do adulto: doenças crônicas, climatério e menopausa,",
     `> sono, ansiedade, dor crônica e prevenção. Registro: ${CRM} · ${RQE}.`,
     "",
@@ -114,6 +114,8 @@ export function llmsTxt() {
     `- Profissional: ${site.doctor}`,
     `- Especialidade: ${site.specialty}`,
     `- Registro: ${CRM} · ${RQE}`,
+    `- ${site.contacts.phone.label}: ${site.contacts.phone.display}`,
+    `- ${site.contacts.whatsapp.label}: ${site.contacts.whatsapp.display}`,
     `- E-mail: ${EMAIL}`,
     `- Instagram: ${INSTAGRAM}`,
     `- Razão social: ${BUSINESS.legalName} (CNPJ ${BUSINESS.cnpj})`,
@@ -167,7 +169,8 @@ export function llmsTxt() {
     "## Observações",
     "",
     "- Atendimento particular; o plano Alice é aceito. O agendamento é feito pelo",
-    "  WhatsApp ou pelo formulário do site.",
+    `  telefone fixo ${site.contacts.phone.display}, por mensagem no WhatsApp`,
+    `  ${site.contacts.whatsapp.display} (apenas mensagens) ou pelo formulário do site.`,
     "- Este site é informativo e não substitui consulta médica: nenhuma conduta é",
     "  indicada sem avaliação presencial.",
     `- Fonte: ${ORIGIN}/`,
